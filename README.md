@@ -1,4 +1,4 @@
-Seadistamise Juhis
+**Seadistamise Juhis**
 
 Mida on vaja: Unity Hub, Unity 6000.0.36f1, GitHub Destop. 
 
