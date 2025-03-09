@@ -1,0 +1,8 @@
+C:/Users/berkm/Documents/GitHub/2D-Game/unity-project/.utmp/RelWithDebInfo/5o6y5946/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Users/berkm/Documents/GitHub/2D-Game/unity-project/.utmp/RelWithDebInfo/5o6y5946/arm64-v8a/CMakeFiles/rebuild_cache.dir
+C:/Users/berkm/Documents/GitHub/2D-Game/unity-project/.utmp/RelWithDebInfo/5o6y5946/arm64-v8a/GameActivity/CMakeFiles/game.dir
+C:/Users/berkm/Documents/GitHub/2D-Game/unity-project/.utmp/RelWithDebInfo/5o6y5946/arm64-v8a/GameActivity/CMakeFiles/edit_cache.dir
+C:/Users/berkm/Documents/GitHub/2D-Game/unity-project/.utmp/RelWithDebInfo/5o6y5946/arm64-v8a/GameActivity/CMakeFiles/rebuild_cache.dir
+C:/Users/berkm/Documents/GitHub/2D-Game/unity-project/.utmp/RelWithDebInfo/5o6y5946/arm64-v8a/FramePacing/CMakeFiles/swappywrapper.dir
+C:/Users/berkm/Documents/GitHub/2D-Game/unity-project/.utmp/RelWithDebInfo/5o6y5946/arm64-v8a/FramePacing/CMakeFiles/edit_cache.dir
+C:/Users/berkm/Documents/GitHub/2D-Game/unity-project/.utmp/RelWithDebInfo/5o6y5946/arm64-v8a/FramePacing/CMakeFiles/rebuild_cache.dir
