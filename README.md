@@ -8,3 +8,6 @@ Mida on vaja: Unity Hub, Unity 6000.0.36f1, GitHub Destop.
 4. Ava Unity Hub ja navigeeri Add → Add project from disk.
 5. Leia kloonitud repositoorium ja vajuta "Add Project".
 6. Ava projekt Unity Hubist ja oledki valmis!
+
+Ülesanded sooritasid:
+Ül 1: Henri Rihard Pallas, Tormi Viirg, Albert Berkman, Õnnela Link.
