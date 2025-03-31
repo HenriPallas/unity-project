@@ -7,6 +7,8 @@ TagManager:
   - MovePlate
   - WinnerText
   - RestartText
+  - cardDisplay
+  - drawButton
   layers:
   - Default
   - TransparentFX

@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class MovePlate : MonoBehaviour
 {
-    //Some functions will need reference to the controller
     public GameObject controller;
 
-    //The Chesspiece that was tapped to create this MovePlate
     GameObject reference = null;
 
     //Location on the board
