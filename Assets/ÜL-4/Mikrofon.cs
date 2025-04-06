@@ -1,8 +1,16 @@
 using UnityEngine;
 
-public class Camera : MonoBehaviour
+public class Mikrofon : MonoBehaviour
 {
+    public GameObject mainPanel;
+    public GameObject microphonePanel;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    public void OpenMicrophone() {
+        mainPanel.SetActive(false);
+        microphonePanel.SetActive(true);
+    }
+
     void Start()
     {
         
