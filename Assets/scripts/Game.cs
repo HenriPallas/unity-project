@@ -21,10 +21,12 @@ public class Game : MonoBehaviour
     // Game Ending
     private bool gameOver = false;
 
-    // ----- CARD DRAWING SYSTEM -----
-    public TextMeshProUGUI cardDisplay;  // Assign this in Unity Inspector
-    public Button drawButton;  // Assign the UI button in Unity Inspector
+    // ----- CARD SYSTEM -----
+    public TextMeshProUGUI cardDisplay;  
+    public Button drawButton;  
     private List<string> deck = new List<string>();
+
+    public Button MenuButton;
 
     public void Start()
     {
@@ -53,6 +55,17 @@ public class Game : MonoBehaviour
         deck = new List<string> {  "Add 2 Pawns", "Queens Move Diagonally Only", "Swap a Knight and a Bishop", "Pawns Move Backward", "Instant Promotion", "Rook Teleport", "King’s Shield", "Bishop Frenzy", "Steal a Move", "Reverse Attack" };
         drawButton.onClick.AddListener(DrawCard);
     }
+
+
+
+    public void ReturnToMenu()
+{
+    SceneManager.LoadScene("StartMenu"); 
+}
+
+
+
+
 
     public GameObject Create(string name, int x, int y)
     {
