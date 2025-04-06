@@ -68,6 +68,12 @@ public class Mikrofon : MonoBehaviour
             Microphone.End(selectedDevice);
         }
     }
+
+    public void back()
+    {
+        mainPanel.SetActive(true);
+        microphonePanel.SetActive(false);
+    }
 }
 
 
