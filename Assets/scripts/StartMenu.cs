@@ -5,6 +5,15 @@ public class StartMenu : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadScene("Game"); // Replace "Game" with your actual main scene name
+        SceneManager.LoadScene("Game"); 
     }
+
+
+    public void SettingsMenu()
+    {
+        SceneManager.LoadScene("Settings");
+    }
+
+
+
 }
