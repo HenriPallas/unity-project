@@ -14,9 +14,10 @@ public class StartMenu : MonoBehaviour
         SceneManager.LoadScene("Settings");
     }
 
-    public void SensorsMenu()
+
+    public void AR()
     {
-        SceneManager.LoadScene("Sensors");
+        SceneManager.LoadScene("AR");
     }
 
 

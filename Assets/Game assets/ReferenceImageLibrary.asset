@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848409ee8ba454f42a5ddff137688a27, type: 3}
+  m_Name: ReferenceImageLibrary
+  m_EditorClassIdentifier: 
+  m_GuidLow: 5643338312606347981
+  m_GuidHigh: 8962520007510937276
+  m_DataStore:
+    m_Storage: []
+  m_Images:
+  - m_SerializedGuid:
+      m_GuidLow: 5263998900059829180
+      m_GuidHigh: 5270341723205539220
+    m_SerializedTextureGuid:
+      m_GuidLow: 7684403045147933480
+      m_GuidHigh: 9086967782165923401
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: board
+    m_Texture: {fileID: 2800000, guid: 18f8fb287bdb6aa449466b950d651b7e, type: 3}
