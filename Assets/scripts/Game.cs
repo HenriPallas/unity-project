@@ -5,8 +5,20 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+
+
+
+
 public class Game : MonoBehaviour
 {
+
+    private float shakeThreshold = 2.0f;
+    private float accelerometerUpdateInterval = 0.1f;
+    private float lowPassKernelWidthInSeconds = 1.0f;
+    private float lowPassFilterFactor;
+    private Vector3 lowPassValue;
+
+    
     // Reference from Unity IDE
     public GameObject chesspiece;
 
@@ -54,6 +66,13 @@ public class Game : MonoBehaviour
         // ----- CARD SYSTEM SETUP -----
         deck = new List<string> {  "Add 2 Pawns", "Queens Move Diagonally Only", "Swap a Knight and a Bishop", "Pawns Move Backward", "Instant Promotion", "Rook Teleport", "King’s Shield", "Bishop Frenzy", "Steal a Move", "Reverse Attack" };
         drawButton.onClick.AddListener(DrawCard);
+
+        //acceleromeetri start
+        lowPassFilterFactor = accelerometerUpdateInterval / lowPassKernelWidthInSeconds;
+        lowPassValue = Input.acceleration;
+
+
+
     }
 
 
@@ -116,12 +135,73 @@ public class Game : MonoBehaviour
 
     public void Update()
     {
+
         if (gameOver && Input.GetMouseButtonDown(0))
         {
             gameOver = false;
             SceneManager.LoadScene("Game");
         }
+
+
+        #if UNITY_EDITOR || UNITY_STANDALONE
+    if (Input.GetKeyDown(KeyCode.S))
+    {
+        Debug.Log("Simulated Shake!");
+        RandomizePiecePositions();
     }
+
+    #else
+    // Real accelerometer logic
+    Vector3 acceleration = Input.acceleration;
+    lowPassValue = Vector3.Lerp(lowPassValue, acceleration, lowPassFilterFactor);
+    Vector3 deltaAcceleration = acceleration - lowPassValue;
+
+    if (deltaAcceleration.sqrMagnitude >= shakeThreshold * shakeThreshold)
+    {
+        RandomizePiecePositions();
+    }
+#endif
+
+
+
+    }
+
+    // ----Shaking piece randomizer---
+    public void RandomizePiecePositions()
+{
+    // Clear the board
+    for (int x = 0; x < 8; x++)
+        for (int y = 0; y < 8; y++)
+            SetPositionEmpty(x, y);
+
+    List<Vector2Int> availablePositions = new List<Vector2Int>();
+    for (int x = 0; x < 8; x++)
+        for (int y = 0; y < 8; y++)
+            availablePositions.Add(new Vector2Int(x, y));
+
+    List<GameObject> allPieces = new List<GameObject>(playerWhite);
+    allPieces.AddRange(playerBlack);
+
+    foreach (GameObject piece in allPieces)
+    {
+        if (availablePositions.Count == 0) break;
+
+        int randIndex = Random.Range(0, availablePositions.Count);
+        Vector2Int pos = availablePositions[randIndex];
+        availablePositions.RemoveAt(randIndex);
+
+        Chessman cm = piece.GetComponent<Chessman>();
+        cm.SetXBoard(pos.x);
+        cm.SetYBoard(pos.y);
+        SetPosition(piece);
+        cm.SetCoords(); // Move the GameObject visually
+    }
+}
+
+
+
+
+
 
     public void Winner(string playerWinner)
     {
