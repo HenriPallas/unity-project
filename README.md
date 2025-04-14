@@ -18,18 +18,18 @@ Mida on vaja: Unity Hub, Unity 6000.0.36f1, GitHub Destop.
 - [x] Ül 3: Tormi Viirg, Madis Valliste.
 - [x] Ül 4: Albert Berkman, Õnnela Link, Madis Valliste.
 - [x] Ül 5: Madis Valliste, Henri Rihard Pallas, Tormi Viirg.
-- [] Ül 6: TBA
-- [] Ül 7: TBA
-- [] Ül 8: TBA
+- [ ] Ül 6: TBA
+- [ ] Ül 7: TBA
+- [ ] Ül 8: TBA
 
 ## Kodutööde dokumentatsioon
 
-- [] Kodutöö nr1:
+- [ ] Kodutöö nr1:
   - Protsess:
   - Lihtne:
   - Raske:
     
-- [] Kodutöö nr2:
+- [ ] Kodutöö nr2:
   - Protsess:
   - Lihtne:
   - Raske:
@@ -39,27 +39,27 @@ Mida on vaja: Unity Hub, Unity 6000.0.36f1, GitHub Destop.
   - Lihtne: Üks peamine lihten asi oli assetide kasutamine ja nende loogika ehitamine.
   - Raske: Üks raskemaid osi oli male loogika ehitamine.
 
-- [] Kodutöö nr4:
+- [ ] Kodutöö nr4:
   - Protsess:
   - Lihtne:
   - Raske:
 
-- [] Kodutöö nr5:
+- [ ] Kodutöö nr5:
   - Protsess:
   - Lihtne:
   - Raske:
 
-- [] Kodutöö nr6:
+- [ ] Kodutöö nr6:
   - Protsess:
   - Lihtne:
   - Raske:
 
-- [] Kodutöö nr7:
+- [ ] Kodutöö nr7:
   - Protsess:
   - Lihtne:
   - Raske:
 
-- [] Kodutöö nr8:
+- [ ] Kodutöö nr8:
   - Protsess:
   - Lihtne:
   - Raske:
