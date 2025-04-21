@@ -11,11 +11,15 @@ Mida on vaja: Unity Hub, Unity 6000.0.36f1, GitHub Destop.
 
 Ülesanded sooritasid:
 Ül 1: Henri Rihard Pallas, Tormi Viirg, Albert Berkman, Õnnela Link.
-
-
+Ül 6: Henri Rihard Pallas.
 
 Kodutöö nr3:
 
 Protsess: Alguses leidsime endale placeholder assetid ja alusatsime male baas loogikaga. Ehitasime valmis süsteemi, kus autmaatselt genereerib ja nupud peale paneb. Siis nupu loogika, ning algeline kaardi süsteem. Lõpus me tegime kiire main menu mockupi ja mõned koodi praandused.
 
 Üks peamine lihten asi oli assetide kasutamine ja nende loogika ehitamine. Üks raskemaid osi oli male loogika ehitamine.
+
+Kodutöö nr6:
+Protsess: Otsustasime, mida on vaja salvestada, uurisime internetist võimalike lahendusi ning hakkasime koodi kirjutama. Võttis aega ning vahepeal läks kood üldse kaduma.
+Halvasti: Vähene unity kogemus, töö kadus.
+Hästi: Asju sai tehtud.
