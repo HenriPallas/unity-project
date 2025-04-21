@@ -10,13 +10,13 @@ public static class SaveSystem
         string path = Application.persistentDataPath + "/data.json";
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        Data newData = new Data();
+        UserData newData = new UserData(data);
 
         formatter.Serialize(stream, newData);
         stream.Close();
     }
 
-    public static SaveData LoadData()
+    public static UserData LoadData()
     {
         string path = Application.persistentDataPath + "/data.json";
         if (File.Exists(path))
@@ -24,7 +24,7 @@ public static class SaveSystem
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);
 
-            SaveData data = formatter.Deserialize(stream) as SaveData;
+            UserData data = formatter.Deserialize(stream) as UserData;
             stream.Close();
 
             return data;
