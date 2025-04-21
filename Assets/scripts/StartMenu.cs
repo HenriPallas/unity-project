@@ -19,6 +19,9 @@ public class StartMenu : MonoBehaviour
         SceneManager.LoadScene("Sensors");
     }
 
-
+    public void ProfileMenu()
+    {
+        SceneManager.LoadScene("Profile");
+    }
 
 }
