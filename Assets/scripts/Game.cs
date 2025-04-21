@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+using System.IO;
 
 
 
@@ -18,7 +18,8 @@ public class Game : MonoBehaviour
     private float lowPassFilterFactor;
     private Vector3 lowPassValue;
 
-    
+    public GameObject[,] chessPieces = new GameObject[8, 8];
+
     // Reference from Unity IDE
     public GameObject chesspiece;
 
@@ -32,6 +33,7 @@ public class Game : MonoBehaviour
 
     // Game Ending
     private bool gameOver = false;
+    
 
     // ----- CARD SYSTEM -----
     public TextMeshProUGUI cardDisplay;  
@@ -227,4 +229,102 @@ public class Game : MonoBehaviour
             cardDisplay.text = "Deck is empty!";
         }
     }
+
+    
+
+
+    public List<GameObject> GetAllChessPieces()
+{
+    List<GameObject> allPieces = new List<GameObject>();
+
+    foreach (GameObject piece in chessPieces)
+    {
+        if (piece != null)
+        {
+            allPieces.Add(piece);
+        }
+    }
+
+    return allPieces;
+}
+
+
+public void ClearBoard()
+{
+    GameObject[] pieces = GameObject.FindGameObjectsWithTag("ChessPiece");
+
+    foreach (GameObject piece in pieces)
+    {
+        Destroy(piece);
+    }
+
+    chessPieces = new GameObject[8, 8];
+    positions = new GameObject[8, 8]; // if you're using another tracking array
+}
+
+
+
+
+public void SpawnPiece(string name, int x, int y)
+{
+    Debug.Log($"[SpawnPiece] {name} at board coords ({x},{y})");
+    // load & instantiate your generic chesspiece prefab…
+    GameObject prefab = Resources.Load<GameObject>("prefab/chesspiece");
+    GameObject obj = Instantiate(prefab);
+
+    // name it so Activate() picks the right sprite
+    obj.tag = "ChessPiece";
+    obj.name = name;
+
+    // set its board coords
+    Chessman cm = obj.GetComponent<Chessman>();
+    cm.SetXBoard(x);
+    cm.SetYBoard(y);
+
+    // *this is the missing line* — register it in your positions matrix
+    SetPosition(obj);  // <-- positions[x,y] = obj;
+
+    // also keep your chessPieces array if you use it
+    chessPieces[x, y] = obj;
+
+    // finally, update the world and sprite
+    cm.Activate();
+}
+
+
+
+
+
+public void SaveGame()
+{
+    Debug.Log("Saving...");
+    Debug.Log("Persistent Path: " + Application.persistentDataPath);
+    Chessman[,] chessPieces = new Chessman[8, 8];
+
+    // Convert GameObject[,] to Chessman[,]
+    for (int x = 0; x < 8; x++)
+    {
+        for (int y = 0; y < 8; y++)
+        {
+            if (positions[x, y] != null)
+            {
+                chessPieces[x, y] = positions[x, y].GetComponent<Chessman>();
+            }
+        }
+    }
+
+    // Save currentPlayer if needed, or any other game state
+    string currentPlayer = GetCurrentPlayer(); // or however you store the turn
+
+    SaveData data = new SaveData(chessPieces, currentPlayer);
+    string json = JsonUtility.ToJson(data);
+
+    string path = Application.persistentDataPath + "/savefile.json";
+    System.IO.File.WriteAllText(path, json);
+
+    Debug.Log("Game saved to: " + path);
+}
+
+
+
 }

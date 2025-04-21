@@ -9,6 +9,7 @@ TagManager:
   - RestartText
   - cardDisplay
   - drawButton
+  - ChessPiece
   layers:
   - Default
   - TransparentFX
