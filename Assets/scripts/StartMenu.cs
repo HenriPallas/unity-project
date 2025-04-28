@@ -19,6 +19,11 @@ public class StartMenu : MonoBehaviour
         SceneManager.LoadScene("Sensors");
     }
 
+    public void LeaderBoard()
+    {
+        SceneManager.LoadScene("Leaderboard");
+    }
+
 
 
 }
