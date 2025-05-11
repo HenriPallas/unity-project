@@ -5,74 +5,54 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-
-
-
-
 public class Game : MonoBehaviour
 {
-    // Reference from Unity IDE
     public GameObject chesspiece;
-
-    // Matrices needed, positions of each of the GameObjects
     private GameObject[,] positions = new GameObject[8, 8];
     private GameObject[] playerBlack = new GameObject[16];
     private GameObject[] playerWhite = new GameObject[16];
-
-    // Current turn
     private string currentPlayer = "white";
-
-    // Game Ending
     private bool gameOver = false;
 
-    // ----- CARD SYSTEM -----
-    public TextMeshProUGUI cardDisplay;  
-    public Button drawButton;  
-    private List<string> deck = new List<string>();
-
+    // Card system
+    public TextMeshProUGUI cardDisplay;
+    public Button drawButton;
     public Button MenuButton;
+
+    private List<string> deck = new List<string>();
+    private string activeCard = "";
 
     public void Start()
     {
-        // Initialize players
-        playerWhite = new GameObject[] { Create("white_rook", 0, 0), Create("white_knight", 1, 0),
-            Create("white_bishop", 2, 0), Create("white_queen", 3, 0), Create("white_king", 4, 0),
-            Create("white_bishop", 5, 0), Create("white_knight", 6, 0), Create("white_rook", 7, 0),
-            Create("white_pawn", 0, 1), Create("white_pawn", 1, 1), Create("white_pawn", 2, 1),
-            Create("white_pawn", 3, 1), Create("white_pawn", 4, 1), Create("white_pawn", 5, 1),
-            Create("white_pawn", 6, 1), Create("white_pawn", 7, 1) };
-        playerBlack = new GameObject[] { Create("black_rook", 0, 7), Create("black_knight",1,7),
-            Create("black_bishop",2,7), Create("black_queen",3,7), Create("black_king",4,7),
-            Create("black_bishop",5,7), Create("black_knight",6,7), Create("black_rook",7,7),
-            Create("black_pawn", 0, 6), Create("black_pawn", 1, 6), Create("black_pawn", 2, 6),
-            Create("black_pawn", 3, 6), Create("black_pawn", 4, 6), Create("black_pawn", 5, 6),
-            Create("black_pawn", 6, 6), Create("black_pawn", 7, 6) };
+        playerWhite = new GameObject[] {
+            Create("white_rook", 0, 0), Create("white_knight", 1, 0), Create("white_bishop", 2, 0), Create("white_queen", 3, 0),
+            Create("white_king", 4, 0), Create("white_bishop", 5, 0), Create("white_knight", 6, 0), Create("white_rook", 7, 0),
+            Create("white_pawn", 0, 1), Create("white_pawn", 1, 1), Create("white_pawn", 2, 1), Create("white_pawn", 3, 1),
+            Create("white_pawn", 4, 1), Create("white_pawn", 5, 1), Create("white_pawn", 6, 1), Create("white_pawn", 7, 1) };
 
-        // Set all piece positions on the board
+        playerBlack = new GameObject[] {
+            Create("black_rook", 0, 7), Create("black_knight", 1, 7), Create("black_bishop", 2, 7), Create("black_queen", 3, 7),
+            Create("black_king", 4, 7), Create("black_bishop", 5, 7), Create("black_knight", 6, 7), Create("black_rook", 7, 7),
+            Create("black_pawn", 0, 6), Create("black_pawn", 1, 6), Create("black_pawn", 2, 6), Create("black_pawn", 3, 6),
+            Create("black_pawn", 4, 6), Create("black_pawn", 5, 6), Create("black_pawn", 6, 6), Create("black_pawn", 7, 6) };
+
         for (int i = 0; i < playerBlack.Length; i++)
         {
             SetPosition(playerBlack[i]);
             SetPosition(playerWhite[i]);
         }
 
-        // ----- CARD SYSTEM SETUP -----
-        deck = new List<string> {  "Add 2 Pawns", "Queens Move Diagonally Only", "Swap a Knight and a Bishop", "Pawns Move Backward", "Instant Promotion", "Rook Teleport", "King’s Shield", "Bishop Frenzy", "Steal a Move", "Reverse Attack" };
+        deck = new List<string> {
+            "Queens Move Diagonally Only", "Swap a Knight and a Bishop", "Pawns Move Backward", "Instant Promotion",
+            "Rook Teleport", "King’s Shield", "Bishop Frenzy", "Steal a Move", "Reverse Attack" };
+
         drawButton.onClick.AddListener(DrawCard);
-
-
-
     }
 
-
-
     public void ReturnToMenu()
-{
-    SceneManager.LoadScene("StartMenu"); 
-}
-
-
-
-
+    {
+        SceneManager.LoadScene("StartMenu");
+    }
 
     public GameObject Create(string name, int x, int y)
     {
@@ -82,6 +62,7 @@ public class Game : MonoBehaviour
         cm.SetXBoard(x);
         cm.SetYBoard(y);
         cm.Activate();
+        cm.SetGameReference(this);
         return obj;
     }
 
@@ -123,7 +104,6 @@ public class Game : MonoBehaviour
 
     public void Update()
     {
-
         if (gameOver && Input.GetMouseButtonDown(0))
         {
             gameOver = false;
@@ -138,21 +118,44 @@ public class Game : MonoBehaviour
         GameObject.FindGameObjectWithTag("WinnerText").GetComponent<TextMeshProUGUI>().text = playerWinner + " is the winner";
     }
 
-    // ----- CARD DRAWING FUNCTION -----
     public void DrawCard()
+{
+    if (deck.Count > 0)
     {
-        if (deck.Count > 0)
-        {
-            int randomIndex = Random.Range(0, deck.Count);
-            string drawnCard = deck[randomIndex];
-            deck.RemoveAt(randomIndex);
+        int randomIndex = Random.Range(0, deck.Count);
+        string drawnCard = deck[randomIndex];
+        deck.RemoveAt(randomIndex);
 
-            // Update the UI to show the drawn card
-            cardDisplay.text = "You drew: " + drawnCard;
-        }
-        else
-        {
-            cardDisplay.text = "Deck is empty!";
-        }
+        currentCardEffect = drawnCard; // Set current effect here
+
+        // Update the UI to show the drawn card
+        cardDisplay.text = "You drew: " + drawnCard;
     }
+    else
+    {
+        cardDisplay.text = "Deck is empty!";
+    }
+}
+
+    public string GetActiveCard()
+    {
+        return activeCard;
+    }
+
+    public void ClearActiveCard()
+    {
+        activeCard = "";
+    }
+
+
+    // ----- CARD EFFECT QUERY FOR CHESSMAN -----
+private string currentCardEffect = "";
+
+public string GetCurrentCardEffect()
+{
+    return currentCardEffect;
+}
+
+
+
 }
