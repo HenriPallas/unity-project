@@ -129,12 +129,12 @@ TextureImporter:
       name: blackking_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 8
-        width: 94
-        height: 102
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 105
+        height: 110
+      alignment: 9
+      pivot: {x: 0.4999998, y: 0.51733893}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 566c96559e32ce54ead1fb850c02d8c3
     internalID: 0
     vertices: []
     indices: 

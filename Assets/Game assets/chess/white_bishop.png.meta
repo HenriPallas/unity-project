@@ -129,12 +129,12 @@ TextureImporter:
       name: whitebishop_0
       rect:
         serializedVersion: 2
-        x: 18
-        y: 7
-        width: 69
-        height: 98
+        x: 0
+        y: 0
+        width: 105
+        height: 110
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: ddf4ad13d1cb09148997e95916d5f7fa
     internalID: 0
     vertices: []
     indices: 
