@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5196f3d957937c04493fc3d5d3977eca
+guid: bb6f582026f6cc542a386975b3b0e72e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3907977461329171865
-    second: whiteking_0
+      213: 7190411948236681040
+    second: soundbtn_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: whiteking_0
+      name: soundbtn_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 7
-        width: 94
-        height: 102
+        x: 0
+        y: 0
+        width: 693
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 99512c4bbcceb3630800000000000000
-      internalID: 3907977461329171865
+      spriteID: 05f2f5b029979c360800000000000000
+      internalID: 7190411948236681040
       vertices: []
       indices: 
       edges: []
@@ -160,8 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      whiteking_0: 3907977461329171865
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
