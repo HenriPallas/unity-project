@@ -56,7 +56,8 @@ public class Game : MonoBehaviour
         }
 
         // ----- CARD SYSTEM SETUP -----
-        deck = new List<string> {  "Add 2 Pawns", "Queens Move Diagonally Only", "Swap a Knight and a Bishop", "Pawns Move Backward", "Instant Promotion", "Rook Teleport", "King’s Shield", "Bishop Frenzy", "Steal a Move", "Reverse Attack" };
+        //deck = new List<string> {  "Add 2 Pawns", "Queens Move Diagonally Only", "Swap a Knight and a Bishop", "Pawns Move Backward", "Instant Promotion", "Rook Teleport", "King’s Shield", "Bishop Frenzy", "Steal a Move", "Reverse Attack" };
+        deck = new List<string> { "Add 2 Pawns" };
         drawButton.onClick.AddListener(DrawCard);
 
 
@@ -147,12 +148,62 @@ public class Game : MonoBehaviour
             string drawnCard = deck[randomIndex];
             deck.RemoveAt(randomIndex);
 
-            // Update the UI to show the drawn card
             cardDisplay.text = "You drew: " + drawnCard;
+
+            ApplyCardEffect(drawnCard);
         }
         else
         {
             cardDisplay.text = "Deck is empty!";
         }
     }
+
+    private void ApplyCardEffect(string card)
+    {
+        switch (card)
+        {
+            case "Add 2 Pawns":
+                AddTwoPawns(currentPlayer);
+                break;
+
+            default:
+                Debug.Log("No effect implemented for: " + card);
+                break;
+        }
+    }
+
+    private void AddTwoPawns(string player)
+    {
+        int y = (player == "white") ? 1 : 6;
+        int added = 0;
+
+        for (int x = 0; x < 8 && added < 2; x++)
+        {
+            if (positions[x, y] == null)
+            {
+                GameObject pawn = Create(player + "_pawn", x, y);
+                SetPosition(pawn);
+
+                if (player == "white")
+                    playerWhite = AddToArray(playerWhite, pawn);
+                else
+                    playerBlack = AddToArray(playerBlack, pawn);
+
+                added++;
+            }
+        }
+
+        Debug.Log(player + " gained 2 pawns!");
+    }
+    private GameObject[] AddToArray(GameObject[] original, GameObject toAdd)
+    {
+        GameObject[] newArray = new GameObject[original.Length + 1];
+        original.CopyTo(newArray, 0);
+        newArray[original.Length] = toAdd;
+        return newArray;
+    }
+
+
+
+
 }
