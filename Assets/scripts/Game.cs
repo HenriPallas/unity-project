@@ -57,7 +57,9 @@ public class Game : MonoBehaviour
 
         // ----- CARD SYSTEM SETUP -----
         //deck = new List<string> {  "Add 2 Pawns", "Queens Move Diagonally Only", "Swap a Knight and a Bishop", "Pawns Move Backward", "Instant Promotion", "Rook Teleport", "King’s Shield", "Bishop Frenzy", "Steal a Move", "Reverse Attack" };
-        deck = new List<string> { "Add 2 Pawns" };
+        deck = new List<string> {
+    "Add 2 Pawns", "Add Knight", "Add Bishop", "Add Rook", "Add Queen"
+};
         drawButton.onClick.AddListener(DrawCard);
 
 
@@ -165,12 +167,24 @@ public class Game : MonoBehaviour
             case "Add 2 Pawns":
                 AddTwoPawns(currentPlayer);
                 break;
-
+            case "Add Knight":
+                AddRandomPiece(currentPlayer, "knight");
+                break;
+            case "Add Bishop":
+                AddRandomPiece(currentPlayer, "bishop");
+                break;
+            case "Add Rook":
+                AddRandomPiece(currentPlayer, "rook");
+                break;
+            case "Add Queen":
+                AddRandomPiece(currentPlayer, "queen");
+                break;
             default:
                 Debug.Log("No effect implemented for: " + card);
                 break;
         }
     }
+
 
     private void AddTwoPawns(string player)
     {
@@ -195,6 +209,38 @@ public class Game : MonoBehaviour
 
         Debug.Log(player + " gained 2 pawns!");
     }
+    private void AddRandomPiece(string player, string pieceType)
+    {
+        List<Vector2Int> emptySpots = new List<Vector2Int>();
+
+        for (int x = 0; x < 8; x++)
+        {
+            for (int y = 0; y < 8; y++)
+            {
+                if (positions[x, y] == null)
+                    emptySpots.Add(new Vector2Int(x, y));
+            }
+        }
+
+        if (emptySpots.Count == 0)
+        {
+            Debug.Log("No empty positions to add a new piece.");
+            return;
+        }
+
+        Vector2Int chosenSpot = emptySpots[Random.Range(0, emptySpots.Count)];
+        string pieceName = player + "_" + pieceType;
+        GameObject newPiece = Create(pieceName, chosenSpot.x, chosenSpot.y);
+        SetPosition(newPiece);
+
+        if (player == "white")
+            playerWhite = AddToArray(playerWhite, newPiece);
+        else
+            playerBlack = AddToArray(playerBlack, newPiece);
+
+        Debug.Log($"{player} added a {pieceType} at ({chosenSpot.x}, {chosenSpot.y})");
+    }
+
     private GameObject[] AddToArray(GameObject[] original, GameObject toAdd)
     {
         GameObject[] newArray = new GameObject[original.Length + 1];
