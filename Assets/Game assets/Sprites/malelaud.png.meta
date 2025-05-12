@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f5bf32a4103dba640956af279ad3d8fb
+guid: 44cb01a8621ba304798a098c51037627
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1640031614521627624
-    second: blackbishop_0
+      213: -1860907456912027794
+    second: malelaud_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: blackbishop_0
+      name: malelaud_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 105
-        height: 110
+        width: 1111
+        height: 1174
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8e3d8fb601092c610800000000000000
-      internalID: 1640031614521627624
+      spriteID: e6f02e6078abc26e0800000000000000
+      internalID: -1860907456912027794
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: bd79822e626c28d4e885ca54a6b001d4
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -160,8 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      blackbishop_0: 1640031614521627624
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

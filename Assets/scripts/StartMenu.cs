@@ -15,4 +15,11 @@ public class StartMenu : MonoBehaviour
     }
 
 
+    public void QuitGame()
+{
+    Debug.Log("Quit button pressed");
+    Application.Quit();
+}
+
+
 }

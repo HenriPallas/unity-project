@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.3324, y: 0.3613, z: -2}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 0.65, y: 0.65, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -103,18 +103,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
   movePlate: {fileID: 8931056481415708551, guid: 7523256af90881c44a30841a5ae69923, type: 3}
-  black_queen: {fileID: -2628853326628446179, guid: b3e94dd55422e1a4d91a6cc7765c85a5, type: 3}
-  black_knight: {fileID: -334450713805299198, guid: 86e86df08fdfc8446ae96bc162240379, type: 3}
-  black_bishop: {fileID: -6414592721767173361, guid: dd50610eab0dfd74e8618abda498ab0b, type: 3}
-  black_king: {fileID: -641104846605737351, guid: 46f54b9e2dd1f6b40a1e0dac95d16706, type: 3}
-  black_rook: {fileID: -7587791273309554880, guid: 8a344b7af14db0c4a9ad9d96b27e10ed, type: 3}
-  black_pawn: {fileID: -4341603147912474925, guid: 8939c75e9f7ff1d42b6caae2c63f94bb, type: 3}
-  white_queen: {fileID: 7270707491364550308, guid: 0f097785d15970349877fa397a1a36d1, type: 3}
-  white_knight: {fileID: 8769669200613306614, guid: 23c47f5686676a1408567cdee89d0453, type: 3}
-  white_bishop: {fileID: 7560534232159598683, guid: 300974bcaa81bb142ae865036808ec34, type: 3}
-  white_king: {fileID: -3792998861040722889, guid: 8ff4d629f9b5a954e93c19f340a4de4e, type: 3}
-  white_rook: {fileID: -8948728166497563328, guid: ab2fccf3a669e294a83690d6f96a536d, type: 3}
-  white_pawn: {fileID: 5580225292014371162, guid: 69bbb3fc1f141714b92d42e198651c28, type: 3}
+  black_queen: {fileID: -4001740978013541874, guid: e19ba03e6142ab547b56bf7b5b01421b, type: 3}
+  black_knight: {fileID: 2419287676180574483, guid: 0beef4794cd1bd848a11c267e537732d, type: 3}
+  black_bishop: {fileID: 1640031614521627624, guid: f5bf32a4103dba640956af279ad3d8fb, type: 3}
+  black_king: {fileID: 2750129874509522297, guid: 2d47a8701e55f7a42aedcaa47dab232d, type: 3}
+  black_rook: {fileID: 7860377297486289045, guid: c23e09f3243d57e498e6f69537c37537, type: 3}
+  black_pawn: {fileID: -5514301745848787425, guid: df99ac07822ddc944ae13699fc9fa698, type: 3}
+  white_queen: {fileID: -8520564806525198539, guid: c5848ca34b4bf004cbc3b5b7f530c150, type: 3}
+  white_knight: {fileID: 8757224248170251960, guid: a131363caeb12194b88ae80a0db0587a, type: 3}
+  white_bishop: {fileID: -3414422921283503356, guid: e273ff1b78dc42f40b6c1ca1a4187eef, type: 3}
+  white_king: {fileID: 3907977461329171865, guid: 5196f3d957937c04493fc3d5d3977eca, type: 3}
+  white_rook: {fileID: 7714830465383889521, guid: 1b717e5a6d1f3f143ad8e297b912daf6, type: 3}
+  white_pawn: {fileID: 2037376883693042845, guid: e8d7f160d085cc64bb84770647dadfc2, type: 3}
 --- !u!61 &8608513879769414542
 BoxCollider2D:
   m_ObjectHideFlags: 0
