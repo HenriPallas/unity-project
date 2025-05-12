@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pawntoknight_0: 5226597968753802859
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
