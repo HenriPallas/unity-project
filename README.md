@@ -18,8 +18,8 @@ Mida on vaja: Unity Hub, Unity 6000.0.36f1, GitHub Destop.
 - [x] Ül 3: Tormi Viirg, Madis Valliste.
 - [x] Ül 4: Albert Berkman, Õnnela Link, Madis Valliste.
 - [x] Ül 5: Madis Valliste, Henri Rihard Pallas, Tormi Viirg.
-- [ ] Ül 6: TBA
-- [ ] Ül 7: TBA
+- [x] Ül 6: Henri Rihard Pallas, Madis Valliste, Tormi Viirg.
+- [x] Ül 7: Albert Berkman, Õnnela Link, Madis Valliste.
 - [ ] Ül 8: TBA
 
 ## Kodutööde dokumentatsioon
