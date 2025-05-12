@@ -11,6 +11,16 @@ using UnityEngine.UI;
 
 public class Game : MonoBehaviour
 {
+
+
+    private int turnCounter = 0; // Counts the number of total turns
+    List<string> whitePlayerCards = new List<string>();
+    List<string> blackPlayerCards = new List<string>();
+    
+    public TextMeshProUGUI whiteCardDisplayText;
+    public TextMeshProUGUI blackCardDisplayText;
+    
+    
     // Reference from Unity IDE
     public GameObject chesspiece;
 
@@ -57,7 +67,7 @@ public class Game : MonoBehaviour
 
         // ----- CARD SYSTEM SETUP -----
         deck = new List<string> {  "Add 2 Pawns", "Queens Move Diagonally Only", "Swap a Knight and a Bishop", "Pawns Move Backward", "Instant Promotion", "Rook Teleport", "King’s Shield", "Bishop Frenzy", "Steal a Move", "Reverse Attack" };
-        drawButton.onClick.AddListener(DrawCard);
+        //drawButton.onClick.AddListener(DrawCard);
 
 
 
@@ -116,10 +126,30 @@ public class Game : MonoBehaviour
         return gameOver;
     }
 
-    public void NextTurn()
+   public void NextTurn()
+{
+    turnCounter++;
+
+    // Every 3 turns, draw a card for the current player
+    if (turnCounter % 3 == 0)
     {
-        currentPlayer = (currentPlayer == "white") ? "black" : "white";
+        string newCard = DrawCard();
+
+        if (currentPlayer == "white")
+        {
+            whitePlayerCards.Add(newCard);
+            DisplayPlayerCard("white", newCard);
+        }
+        else
+        {
+            blackPlayerCards.Add(newCard);
+            DisplayPlayerCard("black", newCard);
+        }
     }
+
+    // Alternate turn
+    currentPlayer = (currentPlayer == "white") ? "black" : "white";
+}
 
     public void Update()
     {
@@ -139,20 +169,39 @@ public class Game : MonoBehaviour
     }
 
     // ----- CARD DRAWING FUNCTION -----
-    public void DrawCard()
+    public string DrawCard()
+{
+    if (deck.Count > 0)
     {
-        if (deck.Count > 0)
-        {
-            int randomIndex = Random.Range(0, deck.Count);
-            string drawnCard = deck[randomIndex];
-            deck.RemoveAt(randomIndex);
+        int randomIndex = Random.Range(0, deck.Count);
+        string drawnCard = deck[randomIndex];
+        deck.RemoveAt(randomIndex);
 
-            // Update the UI to show the drawn card
-            cardDisplay.text = "You drew: " + drawnCard;
-        }
-        else
-        {
-            cardDisplay.text = "Deck is empty!";
-        }
+        // Update the UI
+        cardDisplay.text = "You drew: " + drawnCard;
+
+        return drawnCard;  // return the drawn card
     }
+
+    // If deck is empty
+    cardDisplay.text = "Deck is empty!";
+    return "No card drawn";  //return a fallback string (not null)
+}
+
+
+    public void DisplayPlayerCard(string player, string cardText)
+{
+    if (player == "white" && whiteCardDisplayText != null)
+    {
+        whiteCardDisplayText.text = "White drew: " + cardText;
+    }
+    else if (player == "black" && blackCardDisplayText != null)
+    {
+        blackCardDisplayText.text = "Black drew: " + cardText;
+    }
+}
+
+
+
+
 }
