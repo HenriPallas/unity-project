@@ -2,7 +2,7 @@
 
 ## Seadistamise juhis
 
-Mida on vaja: Unity Hub, Unity 6000.0.36f1, GitHub Destop. 
+Mida on vaja: Unity Hub, Unity 6000.0.44f1, GitHub Destop. 
 
 1. Kopeeri GitHubi repositooriumi URL: https://github.com/HenriPallas/unity-project
 2. Ava GitHub Desktop ja navigeeri File → Clone repository.
@@ -13,13 +13,13 @@ Mida on vaja: Unity Hub, Unity 6000.0.36f1, GitHub Destop.
 
 ## Kodutööde sooritajad
 
-- [x] Ül 1: Henri Rihard Pallas, Tormi Viirg, Albert Berkman, Õnnela Link.
-- [x] Ül 2: Henri Rihard Pallas, Tormi Viirg, Albert Berkman, Õnnela Link.
+- [x] Ül 1: Henri Rihard Pallas, Tormi Viirg, Anna Berkman, Õnnela Link.
+- [x] Ül 2: Henri Rihard Pallas, Tormi Viirg, Anna Berkman, Õnnela Link.
 - [x] Ül 3: Tormi Viirg, Madis Valliste.
-- [x] Ül 4: Albert Berkman, Õnnela Link, Madis Valliste.
+- [x] Ül 4: Anna Berkman, Õnnela Link, Madis Valliste.
 - [x] Ül 5: Madis Valliste, Henri Rihard Pallas, Tormi Viirg.
 - [x] Ül 6: Henri Rihard Pallas, Madis Valliste, Tormi Viirg.
-- [x] Ül 7: Albert Berkman, Õnnela Link, Madis Valliste.
+- [x] Ül 7: Anna Berkman, Õnnela Link, Madis Valliste.
 - [ ] Ül 8: TBA
 
 ## Kodutööde dokumentatsioon
@@ -65,4 +65,4 @@ Mida on vaja: Unity Hub, Unity 6000.0.36f1, GitHub Destop.
   - Raske:
 
 ## Autorid
-Henri Rihard Pallas, Tormi Viirg, Albert Berkman, Õnnela Link, Madis Valliste, Kaspar Makke.
+Henri Rihard Pallas, Tormi Viirg, Anna Berkman, Õnnela Link, Madis Valliste, Kaspar Makke.
