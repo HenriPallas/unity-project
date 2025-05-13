@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0beef4794cd1bd848a11c267e537732d
+guid: 7c4b44de2e2c28547b6f5e6936d1154a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2419287676180574483
-    second: blackhorse_0
+      213: -334450713805299198
+    second: black_knight_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: blackhorse_0
+      name: black_knight_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 105
-        height: 110
+        width: 16
+        height: 18
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3113934d259039120800000000000000
-      internalID: 2419287676180574483
+      spriteID: 20262c809dacb5bf0800000000000000
+      internalID: -334450713805299198
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 8df6c422e5969ca4481627fc2ae760a9
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      blackhorse_0: 2419287676180574483
+      black_knight_0: -334450713805299198
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

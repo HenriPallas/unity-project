@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/scenes/Settings.unity
     guid: f3c0a8d662f781245bacf5333e40d078
   - enabled: 1
+    path: Assets/scenes/Sensors.unity
+    guid: e7a8b634753fd0046a42dec8e470abe1
+  - enabled: 1
     path: Assets/scenes/Game.unity
     guid: 45071da34b11610489a7930e4e53920d
   m_configObjects:

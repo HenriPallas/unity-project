@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a131363caeb12194b88ae80a0db0587a
+guid: fa57682e233fc3b42a43f6d654ad5183
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8757224248170251960
-    second: whitehorse_0
+      213: 8769669200613306614
+    second: white_knight_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: whitehorse_0
+      name: white_knight_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 105
-        height: 110
+        width: 16
+        height: 18
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8b600a25e09e78970800000000000000
-      internalID: 8757224248170251960
+      spriteID: 6f07d3c9caf14b970800000000000000
+      internalID: 8769669200613306614
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: df30992672a70e644850edd34a42249e
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      whitehorse_0: 8757224248170251960
+      white_knight_0: 8769669200613306614
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

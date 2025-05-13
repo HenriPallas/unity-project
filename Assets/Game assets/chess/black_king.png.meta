@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2d47a8701e55f7a42aedcaa47dab232d
+guid: 79ab7b83e01536f449170e31175048c7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2750129874509522297
-    second: blackking_0
+      213: -641104846605737351
+    second: black_king_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: blackking_0
+      name: black_king_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 105
-        height: 110
-      alignment: 9
-      pivot: {x: 0.4999998, y: 0.51733893}
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9756450dc8c6a2620800000000000000
-      internalID: 2750129874509522297
+      spriteID: 972a84ae9865a17f0800000000000000
+      internalID: -641104846605737351
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 566c96559e32ce54ead1fb850c02d8c3
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      blackking_0: 2750129874509522297
+      black_king_0: -641104846605737351
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

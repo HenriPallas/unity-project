@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5196f3d957937c04493fc3d5d3977eca
+guid: 4953bab68cf702942a0974fb88a839ae
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3907977461329171865
-    second: whiteking_0
+      213: -3792998861040722889
+    second: white_king_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: whiteking_0
+      name: white_king_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 105
-        height: 110
+        width: 20
+        height: 20
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 99512c4bbcceb3630800000000000000
-      internalID: 3907977461329171865
+      spriteID: 73cd43ec1af8c5bc0800000000000000
+      internalID: -3792998861040722889
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: daf33948f46128f4ba374776f841817d
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      whiteking_0: 3907977461329171865
+      white_king_0: -3792998861040722889
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
