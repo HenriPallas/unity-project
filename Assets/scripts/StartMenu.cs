@@ -15,14 +15,11 @@ public class StartMenu : MonoBehaviour
     }
 
 
-<<<<<<< Updated upstream
-=======
     public void QuitGame()
-    {
-        Debug.Log("Quit button pressed");
-        Application.Quit();
-    }
+{
+    Debug.Log("Quit button pressed");
+    Application.Quit();
+}
 
 
->>>>>>> Stashed changes
 }
