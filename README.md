@@ -1,6 +1,8 @@
-**Seadistamise Juhis**
+# Chess with extra rules (Working title)
 
-Mida on vaja: Unity Hub, Unity 6000.0.36f1, GitHub Destop. 
+## Seadistamise juhis
+
+Mida on vaja: Unity Hub, Unity 6000.0.44f1, GitHub Destop. 
 
 1. Kopeeri GitHubi repositooriumi URL: https://github.com/HenriPallas/unity-project
 2. Ava GitHub Desktop ja navigeeri File → Clone repository.
@@ -9,13 +11,58 @@ Mida on vaja: Unity Hub, Unity 6000.0.36f1, GitHub Destop.
 5. Leia kloonitud repositoorium ja vajuta "Add Project".
 6. Ava projekt Unity Hubist ja oledki valmis!
 
-Ülesanded sooritasid:
-Ül 1: Henri Rihard Pallas, Tormi Viirg, Albert Berkman, Õnnela Link.
+## Kodutööde sooritajad
 
+- [x] Ül 1: Henri Rihard Pallas, Tormi Viirg, Anna Berkman, Õnnela Link.
+- [x] Ül 2: Henri Rihard Pallas, Tormi Viirg, Anna Berkman, Õnnela Link.
+- [x] Ül 3: Tormi Viirg, Madis Valliste.
+- [x] Ül 4: Anna Berkman, Õnnela Link, Madis Valliste.
+- [x] Ül 5: Madis Valliste, Henri Rihard Pallas, Tormi Viirg.
+- [x] Ül 6: Henri Rihard Pallas, Madis Valliste, Tormi Viirg.
+- [x] Ül 7: Anna Berkman, Õnnela Link, Madis Valliste.
+- [ ] Ül 8: TBA
 
+## Kodutööde dokumentatsioon
 
-Kodutöö nr3:
+- [ ] Kodutöö nr1:
+  - Protsess:
+  - Lihtne:
+  - Raske:
+    
+- [ ] Kodutöö nr2:
+  - Protsess:
+  - Lihtne:
+  - Raske:
 
-Protsess: Alguses leidsime endale placeholder assetid ja alusatsime male baas loogikaga. Ehitasime valmis süsteemi, kus autmaatselt genereerib ja nupud peale paneb. Siis nupu loogika, ning algeline kaardi süsteem. Lõpus me tegime kiire main menu mockupi ja mõned koodi praandused.
+- [x] Kodutöö nr3:
+  - Protsess: Alguses leidsime endale placeholder assetid ja alusatsime male baas loogikaga. Ehitasime valmis süsteemi, kus autmaatselt genereerib ja nupud peale paneb. Siis nupu loogika, ning algeline kaardi süsteem. Lõpus me tegime kiire main menu mockupi ja mõned koodi praandused.
+  - Lihtne: Üks peamine lihten asi oli assetide kasutamine ja nende loogika ehitamine.
+  - Raske: Üks raskemaid osi oli male loogika ehitamine.
 
-Üks peamine lihten asi oli assetide kasutamine ja nende loogika ehitamine. Üks raskemaid osi oli male loogika ehitamine.
+- [ ] Kodutöö nr4:
+  - Protsess:
+  - Lihtne:
+  - Raske:
+
+- [ ] Kodutöö nr5:
+  - Protsess:
+  - Lihtne:
+  - Raske:
+
+- [ ] Kodutöö nr6:
+  - Protsess:
+  - Lihtne:
+  - Raske:
+
+- [ ] Kodutöö nr7:
+  - Protsess:
+  - Lihtne:
+  - Raske:
+
+- [ ] Kodutöö nr8:
+  - Protsess:
+  - Lihtne:
+  - Raske:
+
+## Autorid
+Henri Rihard Pallas, Tormi Viirg, Anna Berkman, Õnnela Link, Madis Valliste, Kaspar Makke.
