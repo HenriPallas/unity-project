@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -5,22 +6,23 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+[System.Serializable]
+public class CardSlot
+{
+    public GameObject cardObject;
+    public Button button;
+    public Image image;
+    public string cardName;
+    public bool isActive = false;
+}
+
+
 
 
 
 
 public class Game : MonoBehaviour
 {
-
-
-    private int turnCounter = 0; // Counts the number of total turns
-    List<string> whitePlayerCards = new List<string>();
-    List<string> blackPlayerCards = new List<string>();
-    
-    public TextMeshProUGUI whiteCardDisplayText;
-    public TextMeshProUGUI blackCardDisplayText;
-    
-    
     // Reference from Unity IDE
     public GameObject chesspiece;
 
@@ -36,11 +38,17 @@ public class Game : MonoBehaviour
     private bool gameOver = false;
 
     // ----- CARD SYSTEM -----
-    public TextMeshProUGUI cardDisplay;  
-    public Button drawButton;  
+    public TextMeshProUGUI cardDisplay;
+    public Button drawButton;
     private List<string> deck = new List<string>();
 
     public Button MenuButton;
+
+    public CardSlot[] whiteCards = new CardSlot[3];
+    public CardSlot[] blackCards = new CardSlot[3];
+
+
+
 
     public void Start()
     {
@@ -66,19 +74,31 @@ public class Game : MonoBehaviour
         }
 
         // ----- CARD SYSTEM SETUP -----
-        deck = new List<string> {  "Add 2 Pawns", "Queens Move Diagonally Only", "Swap a Knight and a Bishop", "Pawns Move Backward", "Instant Promotion", "Rook Teleport", "King’s Shield", "Bishop Frenzy", "Steal a Move", "Reverse Attack" };
-        //drawButton.onClick.AddListener(DrawCard);
+        //deck = new List<string> {  "Add 2 Pawns", "Queens Move Diagonally Only", "Swap a Knight and a Bishop", "Pawns Move Backward", "Instant Promotion", "Rook Teleport", "King’s Shield", "Bishop Frenzy", "Steal a Move", "Reverse Attack" };
+        deck = new List<string> {
+    "Add 2 Pawns", "Add Knight", "Add Bishop", "Add Rook", "Add Queen"
+};
+        drawButton.onClick.AddListener(DrawCard);
 
-
+        InitializeCardSlots(whiteCards);
+        InitializeCardSlots(blackCards);
 
     }
 
 
+    void InitializeCardSlots(CardSlot[] slots)
+    {
+        foreach (var slot in slots)
+        {
+            SetCardSlotState(slot, false);
+            slot.button.onClick.AddListener(() => OnCardClicked(slot));
+        }
+    }
 
     public void ReturnToMenu()
-{
-    SceneManager.LoadScene("StartMenu"); 
-}
+    {
+        SceneManager.LoadScene("StartMenu");
+    }
 
 
 
@@ -126,30 +146,10 @@ public class Game : MonoBehaviour
         return gameOver;
     }
 
-   public void NextTurn()
-{
-    turnCounter++;
-
-    // Every 3 turns, draw a card for the current player
-    if (turnCounter % 3 == 0)
+    public void NextTurn()
     {
-        string newCard = DrawCard();
-
-        if (currentPlayer == "white")
-        {
-            whitePlayerCards.Add(newCard);
-            DisplayPlayerCard("white", newCard);
-        }
-        else
-        {
-            blackPlayerCards.Add(newCard);
-            DisplayPlayerCard("black", newCard);
-        }
+        currentPlayer = (currentPlayer == "white") ? "black" : "white";
     }
-
-    // Alternate turn
-    currentPlayer = (currentPlayer == "white") ? "black" : "white";
-}
 
     public void Update()
     {
@@ -169,37 +169,141 @@ public class Game : MonoBehaviour
     }
 
     // ----- CARD DRAWING FUNCTION -----
-    public string DrawCard()
-{
-    if (deck.Count > 0)
+    public void DrawCard()
     {
+        if (deck.Count == 0)
+        {
+            cardDisplay.text = "Deck is empty!";
+            return;
+        }
+
         int randomIndex = Random.Range(0, deck.Count);
         string drawnCard = deck[randomIndex];
         deck.RemoveAt(randomIndex);
 
-        // Update the UI
         cardDisplay.text = "You drew: " + drawnCard;
 
-        return drawnCard;  // return the drawn card
+        CardSlot[] slots = (currentPlayer == "white") ? whiteCards : blackCards;
+
+        foreach (var slot in slots)
+        {
+            if (string.IsNullOrEmpty(slot.cardName))
+            {
+                slot.cardName = drawnCard;
+                slot.image.color = new Color(1f, 1f, 1f, 0.1f); // 10% visible
+                slot.button.interactable = false;
+                slot.cardObject.GetComponentInChildren<TextMeshProUGUI>().text = drawnCard;
+                slot.cardObject.SetActive(true);
+                break;
+            }
+        }
     }
 
-    // If deck is empty
-    cardDisplay.text = "Deck is empty!";
-    return "No card drawn";  //return a fallback string (not null)
-}
-
-
-    public void DisplayPlayerCard(string player, string cardText)
-{
-    if (player == "white" && whiteCardDisplayText != null)
+    void OnCardClicked(CardSlot slot)
     {
-        whiteCardDisplayText.text = "White drew: " + cardText;
+        if (slot.isActive || string.IsNullOrEmpty(slot.cardName)) return;
+
+        slot.isActive = true;
+        SetCardSlotState(slot, true);
+        ApplyCardEffect(slot.cardName);
+        slot.cardName = ""; // Clear used card
     }
-    else if (player == "black" && blackCardDisplayText != null)
+
+    void SetCardSlotState(CardSlot slot, bool active)
     {
-        blackCardDisplayText.text = "Black drew: " + cardText;
+        slot.button.interactable = active;
+        slot.image.color = active ? new Color(1f, 1f, 1f, 1f) : new Color(1f, 1f, 1f, 0.1f);
     }
-}
+
+
+    private void ApplyCardEffect(string card)
+    {
+        switch (card)
+        {
+            case "Add 2 Pawns":
+                AddTwoPawns(currentPlayer);
+                break;
+            case "Add Knight":
+                AddRandomPiece(currentPlayer, "knight");
+                break;
+            case "Add Bishop":
+                AddRandomPiece(currentPlayer, "bishop");
+                break;
+            case "Add Rook":
+                AddRandomPiece(currentPlayer, "rook");
+                break;
+            case "Add Queen":
+                AddRandomPiece(currentPlayer, "queen");
+                break;
+            default:
+                Debug.Log("No effect implemented for: " + card);
+                break;
+        }
+    }
+
+
+    private void AddTwoPawns(string player)
+    {
+        int y = (player == "white") ? 1 : 6;
+        int added = 0;
+
+        for (int x = 0; x < 8 && added < 2; x++)
+        {
+            if (positions[x, y] == null)
+            {
+                GameObject pawn = Create(player + "_pawn", x, y);
+                SetPosition(pawn);
+
+                if (player == "white")
+                    playerWhite = AddToArray(playerWhite, pawn);
+                else
+                    playerBlack = AddToArray(playerBlack, pawn);
+
+                added++;
+            }
+        }
+
+        Debug.Log(player + " gained 2 pawns!");
+    }
+    private void AddRandomPiece(string player, string pieceType)
+    {
+        List<Vector2Int> emptySpots = new List<Vector2Int>();
+
+        for (int x = 0; x < 8; x++)
+        {
+            for (int y = 0; y < 8; y++)
+            {
+                if (positions[x, y] == null)
+                    emptySpots.Add(new Vector2Int(x, y));
+            }
+        }
+
+        if (emptySpots.Count == 0)
+        {
+            Debug.Log("No empty positions to add a new piece.");
+            return;
+        }
+
+        Vector2Int chosenSpot = emptySpots[Random.Range(0, emptySpots.Count)];
+        string pieceName = player + "_" + pieceType;
+        GameObject newPiece = Create(pieceName, chosenSpot.x, chosenSpot.y);
+        SetPosition(newPiece);
+
+        if (player == "white")
+            playerWhite = AddToArray(playerWhite, newPiece);
+        else
+            playerBlack = AddToArray(playerBlack, newPiece);
+
+        Debug.Log($"{player} added a {pieceType} at ({chosenSpot.x}, {chosenSpot.y})");
+    }
+
+    private GameObject[] AddToArray(GameObject[] original, GameObject toAdd)
+    {
+        GameObject[] newArray = new GameObject[original.Length + 1];
+        original.CopyTo(newArray, 0);
+        newArray[original.Length] = toAdd;
+        return newArray;
+    }
 
 
 
