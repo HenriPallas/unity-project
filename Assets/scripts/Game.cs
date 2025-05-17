@@ -25,6 +25,8 @@ public class Game : MonoBehaviour
 {
     // Reference from Unity IDE
     public GameObject chesspiece;
+    public GameObject chessBoard;
+    public GameObject settings;
 
     // Matrices needed, positions of each of the GameObjects
     private GameObject[,] positions = new GameObject[8, 8];
@@ -97,7 +99,14 @@ public class Game : MonoBehaviour
 
     public void ReturnToMenu()
     {
-        SceneManager.LoadScene("StartMenu");
+        //SceneManager.LoadScene("Settings");
+        chessBoard.SetActive(false);
+        settings.SetActive(true);
+    }
+    public void CloseSettings()
+    {
+        chessBoard.SetActive(true);
+        settings.SetActive(false);
     }
 
 
@@ -106,7 +115,8 @@ public class Game : MonoBehaviour
 
     public GameObject Create(string name, int x, int y)
     {
-        GameObject obj = Instantiate(chesspiece, new Vector3(0, 0, -1), Quaternion.identity);
+        GameObject obj = Instantiate(chesspiece, new Vector3(0, 0, -1), Quaternion.identity, chessBoard.transform);
+        obj.transform.localScale = Vector3.one * 1.2f;
         Chessman cm = obj.GetComponent<Chessman>();
         cm.name = name;
         cm.SetXBoard(x);
@@ -114,6 +124,7 @@ public class Game : MonoBehaviour
         cm.Activate();
         return obj;
     }
+
 
     public void SetPosition(GameObject obj)
     {
