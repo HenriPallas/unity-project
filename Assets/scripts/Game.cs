@@ -10,11 +10,13 @@ using UnityEngine.UI;
 public class CardSlot
 {
     public GameObject cardObject;
-    public Button button;
-    public Image image;
     public string cardName;
     public bool isActive = false;
+
+    [HideInInspector] public Image image;
+    [HideInInspector] public Button button;
 }
+
 
 
 
@@ -92,10 +94,23 @@ public class Game : MonoBehaviour
     {
         foreach (var slot in slots)
         {
+            // Get the Image and Button from the cardObject
+            slot.image = slot.cardObject.GetComponent<Image>();
+            slot.button = slot.cardObject.GetComponent<Button>();
+
             SetCardSlotState(slot, false);
-            slot.button.onClick.AddListener(() => OnCardClicked(slot));
+
+            if (slot.button != null)
+            {
+                slot.button.onClick.AddListener(() => OnCardClicked(slot));
+            }
+            else
+            {
+                Debug.LogWarning("Button not found on cardObject.");
+            }
         }
     }
+
 
     public void ReturnToMenu()
     {
@@ -200,11 +215,14 @@ public class Game : MonoBehaviour
         {
             if (string.IsNullOrEmpty(slot.cardName))
             {
-                slot.cardName = drawnCard;
-                slot.image.color = new Color(1f, 1f, 1f, 0.1f); // 10% visible
-                slot.button.interactable = false;
-                slot.cardObject.GetComponentInChildren<TextMeshProUGUI>().text = drawnCard;
                 slot.cardObject.SetActive(true);
+
+                slot.cardName = drawnCard;
+
+                slot.button.interactable = true;
+
+                slot.cardObject.GetComponentInChildren<TextMeshProUGUI>().text = drawnCard;
+
                 break;
             }
         }
@@ -220,11 +238,14 @@ public class Game : MonoBehaviour
         slot.cardName = ""; // Clear used card
     }
 
+
+
     void SetCardSlotState(CardSlot slot, bool active)
     {
-        slot.button.interactable = active;
-        slot.image.color = active ? new Color(1f, 1f, 1f, 1f) : new Color(1f, 1f, 1f, 0.1f);
+        if (slot.button != null)
+            slot.button.interactable = active;
     }
+
 
 
     private void ApplyCardEffect(string card)
