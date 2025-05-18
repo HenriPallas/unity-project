@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/b0534cb8-bdc7-447c-b376-66e5ea0ef88c)# Knifeback Chess
+# Knifeback Chess
 Use everything to win. That's all that matters.
 
 A chess game where you can use everything and anything against your oppent and they in return do the same by changing the rules of chess on the fly.
@@ -31,6 +31,7 @@ Cards can give you powerful advantages — use them wisely.
 Required software: Unity Hub, Unity 6000.0.44f1 , GitHub Destop.
 The phone must have USB Debugging enabled.
 Concerning Unity 6000.0.44f1 make sure it supports the mobile OS of your choice. If you don't have the tools or the correct version (6000.0.44f1) installed → go to Unity hub → Installs → Install Editor → Add modules (Android build support, OpenJDK, Android SDK and NDK tools and/or iOS build support).
+![image](https://github.com/user-attachments/assets/b0534cb8-bdc7-447c-b376-66e5ea0ef88c)
 ![image](https://github.com/user-attachments/assets/0a07d84b-db52-4825-aae3-2bc23eb5c12d)
 ![image](https://github.com/user-attachments/assets/5b2aec7f-7453-43d0-a0a7-f63831c8dcd9)
 ![image](https://github.com/user-attachments/assets/9a01fd3b-fe71-4e3e-80f6-4256c1fae05b)
@@ -81,11 +82,11 @@ Wait for it to compile and enjoy!
 - [x] Ül 5: Henri Rihard Pallas, Madis Valliste, Tormi Viirg.
 - [x] Ül 6: Henri Rihard Pallas, Madis Valliste, Tormi Viirg.
 - [x] Ül 7: Anna Berkman, Õnnela Link, Madis Valliste.
-- [ ] Ül 8: Anna Berkman, Õnnela Link, Henri Rihard Pallas, Madis Valliste, Tormi Viirg.
+- [x] Ül 8: Anna Berkman, Õnnela Link, Henri Rihard Pallas, Madis Valliste, Tormi Viirg.
 
 ## Homework documentation
 
-- [ ] Week 1:
+- [x] Week 1:
 What turned out to be easy and what turned out to be difficult:
 
 Easy:
@@ -106,7 +107,7 @@ Project Requirements:
   Ensure the application works on both a physical mobile device and an emulator
   Ensure the debugger works on a physical device as well
 
-- [ ] Week 2:
+- [x] Week 2:
 C# overview
  (https://docs.google.com/document/d/13vMeCIawrKJIbYmVk_AHcN1xxpTRCkaAnYMo8r03aaQ/edit?tab=t.0)
 
@@ -123,30 +124,48 @@ Difficult:
   Designing a UI that best communicates the idea of our game while accounting for the limitations of the mobile format.
   Actually agreeing on a idea that's doable in the timeframe provided with the possibility to reuse code from the individual weekly assignments in the final game. Quite the task as peoples expectations for games are very high and the      games themselves very difficult to make because of their highly interactable and non-standardised way of doing things. 
 
-- [ ] Week 4:
+- [x] Week 4:
   - Protsess:
-  - Lihtne:
-  - Raske:
+    Implementing and using microphones, cameras, and sensors like the accelerometer on our phones using Unity turned out to be an interesting experience.
+  - Easy:
+    Overall, one of the easier parts was making use of the modules already built into Unity using the built-in APIs such as the Microphone, WebCamTexture, and Input classes, which allowed us to set up and use device inputs quite             quickly. For example, recording audio from the microphone or displaying the camera feed in real-time on a separate screen worked quite smoothly.
+  - Difficult:
+    However, processing the data and handling permissions proved to be more challenging. For instance, sometimes the accelerometer and gyroscope did not behave as expected on different devices. In the end, though, we managed to       
+    integrate them into the game logic as well.
 
-- [ ] Week 5:
-  - Protsess:
-  - Lihtne:
-  - Raske:
+- [x] Week 5:
+  - Protsess: To create a new AR page, We started by choosing a suitable template in Unity using AR Foundation. The template helped to speed up the initial setup, especially with camera configuration and basic AR plane detection. We         added a 3D model and added interactivity by adding the additional challange of finding where the object spawned in the enviornment.
 
-- [ ] Week 6:
-  - Protsess:
-  - Lihtne:
-  - Raske:
+  -Easy:
+    One of the easiest parts of the process was placing the 3D content in the scene and seeing it rendered through the AR camera. Unity’s interface and prefab system made it quick to test different objects.
+  -Difficult
+    However, one of the more difficult challenges was ensuring that AR features worked consistently across different mobile devices. Debugging AR plane detection and touch controls was also tricky, especially when the environment had         poor lighting or low-texture surfaces.
 
-- [ ] Week 7:
+- [x] Week 6:
   - Protsess:
-  - Lihtne:
-  - Raske:
+    In this project, we created a personal settings page where user preferences are stored locally on the mobile device. For local storage, we used Unity's PlayerPrefs for simple settings like toggles, and for more complex         data,     we wrote the data directly to the device's persistent data path using System.IO to implement a sort of save system for rollbacks as our second card. These files are saved in the application's persistent data folder, so they               remain accessible even after the app is closed and reopened.
+  - Easy:
+    Saving the players name and creating a scoreboard.
+  -Difficult
+    Saving data was supprisingly hard using built-in C# file handling and Unity paths. The challenge was ensuring proper permissions, and especially coneverting the board state into a usable and efficient file format, while dealing with     buggs on android. Handling different file paths on iOS and Android also required some platform-specific code which meant we were unable to properly test our card and thus couldn't use it in our final version of the game. We also ran     into difficulties allowing the user upload a photo and autocropping it so it would fit the 1:1 aspect ratio.
 
-- [ ] Week 8:
+- [x] Week 7:
+  - Protsess: 
+  Integrate our mobile application with an external server, we implemented a lightweight solution using RESTful HTTP communication. The app connects to a public API (like https://reqres.in) to fetch and send information in JSON format.
+  First, we selected the data source—an API endpoint that provides user data, including names, and the locations of our pices on the board. The HTTP protocol with REST was chosen because it's simple and widely supported in Unity using     UnityWebRequest. Once connected, we handled data fetching by making GET requests. The received JSON data was parsed and then used to dynamically display user information and images in the app. For sending information, we used POST       requests to simulate data submission to the server—such as user feedback or profile settings. The data was serialized into JSON and sent along with the request body.
+
+  -Easy:
+  Leaderboard
+  -Difficult:
+  One major challenge was managing asynchronous requests and ensuring the UI updates correctly after the data is received. Another was handling server errors or offline situations gracefully and sending the coordinates.
+
+- [x] Week 8:
   - Protsess:
-  - Lihtne:
-  - Raske:
+    Implementing a turn system in our splitscreen local game where playing a card counts as your turn. You must wait until your next turn to move again. You earn a card every 5 turns and each player can hold up to 3 cards at a time. White’s cards appear at the bottom of the screen, black’s cards appear at the top of the screen. Some cards have special effects (like skipping the opponent’s turn or spawning pieces). Implementing and designing the finnal UI and menu system for navvigation for it.
+  - Easy:
+    UI design and implementation with the corrosponding menus.
+  - Hard:
+    Making new rule cards.
 
 ## Authors
  Anna Berkman, Õnnela Link, Henri Rihard Pallas, Madis Valliste, Tormi Viirg
