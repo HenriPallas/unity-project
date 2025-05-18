@@ -14,6 +14,9 @@ public class CardSlot
 
      public Image image;
      public Button button;
+
+    public TextMeshProUGUI topText;
+    public TextMeshProUGUI bottomText;
 }
 
 
@@ -32,6 +35,8 @@ public class Game : MonoBehaviour
     // Current turn
     private string currentPlayer = "white";
 
+    private int extraTurnActive = 0;
+
     // Game Ending
     private bool gameOver = false;
 
@@ -47,7 +52,7 @@ public class Game : MonoBehaviour
     private int blackTurnCounter = 0;
 
     // Set this to how many turns before drawing a card
-    private const int turnsBeforeDraw = 3;
+    private const int turnsBeforeDraw = 5;
 
     public TextMeshProUGUI whiteTurnText;
     public TextMeshProUGUI blackTurnText;
@@ -59,6 +64,15 @@ public class Game : MonoBehaviour
     public GameObject gameOverObject;
     public TextMeshProUGUI winnerText;
 
+    public Sprite spawnCardSprite;
+    public Sprite tacticCardSprite;
+
+
+    public TextMeshProUGUI sound;
+    public TextMeshProUGUI music;
+
+    private bool isSoundOn = true;
+    private bool isMusicOn = true;
 
 
 
@@ -89,8 +103,26 @@ public class Game : MonoBehaviour
         // ----- CARD SYSTEM SETUP -----
         //deck = new List<string> {  "Add 2 Pawns", "Queens Move Diagonally Only", "Swap a Knight and a Bishop", "Pawns Move Backward", "Instant Promotion", "Rook Teleport", "King’s Shield", "Bishop Frenzy", "Steal a Move", "Reverse Attack" };
         deck = new List<string> {
-    "Add 2 Pawns", "Add Knight", "Add Bishop", "Add Rook", "Add Queen"
-};
+        // Pawns
+        "Add 2 Pawns", "Add 2 Pawns", "Add 2 Pawns", "Add 2 Pawns", "Add 2 Pawns",  "Add 2 Pawns", "Add 2 Pawns", "Add 2 Pawns", "Add 2 Pawns", "Add 2 Pawns", "Add 2 Pawns", 
+
+        // Knights
+        "Add Knight", "Add Knight", "Add Knight", "Add Knight", "Add Knight", "Add Knight", "Add Knight", "Add Knight",
+
+        // Bishops
+        "Add Bishop", "Add Bishop", "Add Bishop", "Add Bishop", "Add Bishop", "Add Bishop",  "Add Bishop", "Add Bishop",
+
+        // Rooks
+        "Add Rook", "Add Rook", "Add Rook", "Add Rook", "Add Rook", "Add Rook",
+
+        // Queens
+        "Add Queen", "Add Queen", "Add Queen", 
+
+        // Skip Turn
+        "Skip Opponent's Turn", "Skip Opponent's Turn", "Skip Opponent's Turn",  "Skip Opponent's Turn"
+
+    };
+
         drawButton.onClick.AddListener(DrawCard);
 
         InitializeCardSlots(whiteCards);
@@ -98,14 +130,29 @@ public class Game : MonoBehaviour
 
     }
 
+    public void SoundButton()
+    {
+        isSoundOn = !isSoundOn;
+        sound.text = "Sound: " + (isSoundOn ? "ON" : "OFF");
+    }
+
+    public void MusicButton()
+    {
+        isMusicOn = !isMusicOn;
+        music.text = "Music: " + (isMusicOn ? "ON" : "OFF");
+    }
+
 
     void InitializeCardSlots(CardSlot[] slots)
     {
         foreach (var slot in slots)
         {
-            // Get the Image and Button from the cardObject
             slot.image = slot.cardObject.GetComponent<Image>();
             slot.button = slot.cardObject.GetComponent<Button>();
+
+            // 🔽 Assign the TMP texts by finding child objects
+            slot.topText = slot.cardObject.transform.Find("UpperText").GetComponent<TextMeshProUGUI>();
+            slot.bottomText = slot.cardObject.transform.Find("BottomText").GetComponent<TextMeshProUGUI>();
 
             SetCardSlotState(slot, false);
 
@@ -119,6 +166,7 @@ public class Game : MonoBehaviour
             }
         }
     }
+
 
     public void MainScreen()
     {
@@ -187,7 +235,38 @@ public class Game : MonoBehaviour
 
     public void NextTurn()
     {
-        // Increment the counter for the player who just played
+        // Check if current player has an extra turn
+        if (extraTurnActive > 0)
+        {
+            extraTurnActive -= 1; // use up the extra turn
+            Debug.Log($"{currentPlayer} gets another turn (Skip card used).");
+
+            // Still increase the turn counter and maybe draw a card
+            if (currentPlayer == "white")
+            {
+                whiteTurnCounter++;
+                if (whiteTurnCounter >= turnsBeforeDraw)
+                {
+                    whiteTurnCounter = 0;
+                    DrawCardForPlayer("white");
+                }
+            }
+            else
+            {
+                blackTurnCounter++;
+                if (blackTurnCounter >= turnsBeforeDraw)
+                {
+                    blackTurnCounter = 0;
+                    DrawCardForPlayer("black");
+                }
+            }
+
+            // No player switch
+            UpdateCardInteractivity();
+            return;
+        }
+
+        // Normal player switch
         if (currentPlayer == "white")
         {
             whiteTurnText.gameObject.SetActive(false);
@@ -219,6 +298,7 @@ public class Game : MonoBehaviour
 
         UpdateCardInteractivity();
     }
+
 
     private void UpdateCardInteractivity()
     {
@@ -290,7 +370,18 @@ public class Game : MonoBehaviour
             {
                 slot.cardObject.SetActive(true);
                 slot.cardName = drawnCard;
-                slot.cardObject.GetComponentInChildren<TextMeshProUGUI>().text = drawnCard;
+
+                string cardCategory = GetCardCategory(drawnCard);
+
+                // UI text
+                slot.cardObject.transform.Find("UpperText")
+                    .GetComponent<TextMeshProUGUI>().text = cardCategory;
+                slot.cardObject.transform.Find("BottomText")
+                    .GetComponent<TextMeshProUGUI>().text = drawnCard;
+
+                // Sprite
+                slot.image.sprite = (cardCategory == "Spawn") ? spawnCardSprite : tacticCardSprite;
+
                 break;
             }
         }
@@ -298,17 +389,61 @@ public class Game : MonoBehaviour
         UpdateCardInteractivity();
     }
 
+    private string GetCardCategory(string cardName)
+    {
+        switch (cardName)
+        {
+            case "Add 2 Pawns":
+            case "Add Knight":
+            case "Add Bishop":
+            case "Add Rook":
+            case "Add Queen":
+                return "Spawn";
+
+            case "Skip Opponent's Turn":
+                return "Tactic";
+
+            // Future card categories can go here
+            default:
+                return "Unknown";
+        }
+    }
+
+
+    private string GetCardTopText(string cardName)
+    {
+        switch (cardName)
+        {
+            case "Add 2 Pawns": return "Gain Units";
+            case "Add Knight": return "Promote to Knight";
+            case "Add Bishop": return "Promote to Bishop";
+            case "Add Rook": return "Promote to Rook";
+            case "Add Queen": return "Promote to Queen";
+            default: return "Card Effect";
+        }
+    }
+
+
 
 
     void OnCardClicked(CardSlot slot)
     {
         if (string.IsNullOrEmpty(slot.cardName)) return;
 
-        ApplyCardEffect(slot.cardName);
+        string cardPlayed = slot.cardName;
+
+        ApplyCardEffect(cardPlayed);
 
         slot.cardName = "";
         slot.cardObject.SetActive(false);
+
+        // Playing a card counts as a turn unless it's a Skip card
+        if (cardPlayed != "Skip Opponent's Turn")
+        {
+            NextTurn();
+        }
     }
+
 
 
 
@@ -340,36 +475,64 @@ public class Game : MonoBehaviour
             case "Add Queen":
                 AddRandomPiece(currentPlayer, "queen");
                 break;
+            case "Skip Opponent's Turn":
+                SkipOpponentTurn();
+                break;
             default:
                 Debug.Log("No effect implemented for: " + card);
                 break;
         }
     }
 
+    private void SkipOpponentTurn()
+    {
+        Debug.Log($"{currentPlayer} played 'Skip Opponent's Turn'. They will take another turn.");
+
+        extraTurnActive = 2; // next call to NextTurn() will not switch players
+        NextTurn(); // ends current turn and grants another immediately
+    }
+
+
+
 
     private void AddTwoPawns(string player)
     {
-        int y = (player == "white") ? 1 : 6;
-        int added = 0;
+        List<Vector2Int> emptySpots = new List<Vector2Int>();
 
-        for (int x = 0; x < 8 && added < 2; x++)
+        // Find all empty positions on the board
+        for (int x = 0; x < 8; x++)
         {
-            if (positions[x, y] == null)
+            for (int y = 0; y < 8; y++)
             {
-                GameObject pawn = Create(player + "_pawn", x, y);
-                SetPosition(pawn);
-
-                if (player == "white")
-                    playerWhite = AddToArray(playerWhite, pawn);
-                else
-                    playerBlack = AddToArray(playerBlack, pawn);
-
-                added++;
+                if (positions[x, y] == null)
+                    emptySpots.Add(new Vector2Int(x, y));
             }
         }
 
-        Debug.Log(player + " gained 2 pawns!");
+        if (emptySpots.Count < 2)
+        {
+            Debug.Log("Not enough space to spawn 2 pawns.");
+            return;
+        }
+
+        // Shuffle and choose 2 positions
+        for (int i = 0; i < 2; i++)
+        {
+            Vector2Int spot = emptySpots[Random.Range(0, emptySpots.Count)];
+            emptySpots.Remove(spot); // Avoid duplicates
+
+            GameObject pawn = Create(player + "_pawn", spot.x, spot.y);
+            SetPosition(pawn);
+
+            if (player == "white")
+                playerWhite = AddToArray(playerWhite, pawn);
+            else
+                playerBlack = AddToArray(playerBlack, pawn);
+
+            Debug.Log($"{player} spawned a pawn at ({spot.x}, {spot.y})");
+        }
     }
+
     private void AddRandomPiece(string player, string pieceType)
     {
         List<Vector2Int> emptySpots = new List<Vector2Int>();

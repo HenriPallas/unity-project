@@ -176,7 +176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Sound: OFF'
+  m_text: 'Sound: ON'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c37b3119b21cde94ab439c98f4974324, type: 2}
   m_sharedMaterial: {fileID: 6355454376605373347, guid: c37b3119b21cde94ab439c98f4974324, type: 2}
@@ -3576,7 +3576,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Music: OFF'
+  m_text: 'Music: ON'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c37b3119b21cde94ab439c98f4974324, type: 2}
   m_sharedMaterial: {fileID: 6355454376605373347, guid: c37b3119b21cde94ab439c98f4974324, type: 2}
