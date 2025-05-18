@@ -9,9 +9,27 @@ The slings and arrows of outrageous fortune,
 Or to take arms against a sea of troubles,
 And by opposing end them? To die: to lose;
 
+
+## Game Rules
+Like in normal chess, your goal is to capture the opponent’s king to win.
+## Turn System
+Players take turns one at a time.
+Playing a card counts as your turn. You must wait until your next turn to move again.
+## Card Mechanics
+You earn a card every 5 turns.
+Each player can hold up to 3 cards at a time.
+White’s cards appear at the bottom of the screen.
+Black’s cards appear at the top of the screen.
+Some cards have special effects (like skipping the opponent’s turn or spawning pieces).
+## Special Notes
+If you play a card that skips the opponent’s turn, you get to take two turns in a row.
+Cards can give you powerful advantages — use them wisely.
+
+
 ## Settup guide
 
 Required software: Unity Hub, Unity 6000.0.44f1 , GitHub Destop.
+The phone must have USB Debugging enabled.
 Concerning Unity 6000.0.44f1 make sure it supports the mobile OS of your choice. If you don't have the tools or the correct version (6000.0.44f1) installed → go to Unity hub → Installs → Install Editor → Add modules (Android build support, OpenJDK, Android SDK and NDK tools and/or iOS build support).
 ![image](https://github.com/user-attachments/assets/0a07d84b-db52-4825-aae3-2bc23eb5c12d)
 ![image](https://github.com/user-attachments/assets/5b2aec7f-7453-43d0-a0a7-f63831c8dcd9)
