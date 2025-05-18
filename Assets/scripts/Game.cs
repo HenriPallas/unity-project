@@ -11,16 +11,10 @@ public class CardSlot
 {
     public GameObject cardObject;
     public string cardName;
-    public bool isActive = false;
 
-    [HideInInspector] public Image image;
-    [HideInInspector] public Button button;
+     public Image image;
+     public Button button;
 }
-
-
-
-
-
 
 
 public class Game : MonoBehaviour
@@ -46,16 +40,31 @@ public class Game : MonoBehaviour
     public Button drawButton;
     private List<string> deck = new List<string>();
 
-    public Button MenuButton;
-
     public CardSlot[] whiteCards = new CardSlot[3];
     public CardSlot[] blackCards = new CardSlot[3];
+
+    private int whiteTurnCounter = 0;
+    private int blackTurnCounter = 0;
+
+    // Set this to how many turns before drawing a card
+    private const int turnsBeforeDraw = 3;
+
+    public TextMeshProUGUI whiteTurnText;
+    public TextMeshProUGUI blackTurnText;
+
+    public TextMeshProUGUI timerText;
+    private float elapsedTime = 0f;
+    private bool timerRunning = true;
+
+    public GameObject gameOverObject;
+    public TextMeshProUGUI winnerText;
 
 
 
 
     public void Start()
     {
+        Time.timeScale = 1;
         // Initialize players
         playerWhite = new GameObject[] { Create("white_rook", 0, 0), Create("white_knight", 1, 0),
             Create("white_bishop", 2, 0), Create("white_queen", 3, 0), Create("white_king", 4, 0),
@@ -111,6 +120,10 @@ public class Game : MonoBehaviour
         }
     }
 
+    public void MainScreen()
+    {
+        SceneManager.LoadScene("StartMenu");
+    }
 
     public void ReturnToMenu()
     {
@@ -174,32 +187,92 @@ public class Game : MonoBehaviour
 
     public void NextTurn()
     {
-        currentPlayer = (currentPlayer == "white") ? "black" : "white";
+        // Increment the counter for the player who just played
+        if (currentPlayer == "white")
+        {
+            whiteTurnText.gameObject.SetActive(false);
+            blackTurnText.gameObject.SetActive(true);
+
+            whiteTurnCounter++;
+            if (whiteTurnCounter >= turnsBeforeDraw)
+            {
+                whiteTurnCounter = 0;
+                DrawCardForPlayer("white");
+            }
+
+            currentPlayer = "black";
+        }
+        else
+        {
+            whiteTurnText.gameObject.SetActive(true);
+            blackTurnText.gameObject.SetActive(false);
+
+            blackTurnCounter++;
+            if (blackTurnCounter >= turnsBeforeDraw)
+            {
+                blackTurnCounter = 0;
+                DrawCardForPlayer("black");
+            }
+
+            currentPlayer = "white";
+        }
+
+        UpdateCardInteractivity();
     }
+
+    private void UpdateCardInteractivity()
+    {
+        foreach (var slot in whiteCards)
+        {
+            if (slot.button != null)
+                slot.button.interactable = currentPlayer == "white" && !string.IsNullOrEmpty(slot.cardName);
+        }
+
+        foreach (var slot in blackCards)
+        {
+            if (slot.button != null)
+                slot.button.interactable = currentPlayer == "black" && !string.IsNullOrEmpty(slot.cardName);
+        }
+    }
+
 
     public void Update()
     {
-
-        if (gameOver && Input.GetMouseButtonDown(0))
+        if (timerRunning)
         {
-            gameOver = false;
-            SceneManager.LoadScene("Game");
+            elapsedTime += Time.deltaTime;
+            int minutes = Mathf.FloorToInt(elapsedTime / 60f);
+            int seconds = Mathf.FloorToInt(elapsedTime % 60f);
+            timerText.text = $"{minutes:00}:{seconds:00}";
         }
     }
+
 
     public void Winner(string playerWinner)
     {
         gameOver = true;
-        GameObject.FindGameObjectWithTag("WinnerText").GetComponent<TextMeshProUGUI>().enabled = true;
-        GameObject.FindGameObjectWithTag("WinnerText").GetComponent<TextMeshProUGUI>().text = playerWinner + " is the winner";
+        chessBoard.SetActive(false);
+        gameOverObject.SetActive(true);
+        winnerText.text = playerWinner;
+        Time.timeScale = 0;
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("Game");
     }
 
     // ----- CARD DRAWING FUNCTION -----
     public void DrawCard()
     {
+        DrawCardForPlayer(currentPlayer);
+    }
+
+    private void DrawCardForPlayer(string player)
+    {
         if (deck.Count == 0)
         {
-            cardDisplay.text = "Deck is empty!";
+            Debug.Log("Deck empty");
             return;
         }
 
@@ -207,36 +280,36 @@ public class Game : MonoBehaviour
         string drawnCard = deck[randomIndex];
         deck.RemoveAt(randomIndex);
 
-        cardDisplay.text = "You drew: " + drawnCard;
+        cardDisplay.text = $"{player} drew: {drawnCard}";
 
-        CardSlot[] slots = (currentPlayer == "white") ? whiteCards : blackCards;
+        CardSlot[] slots = (player == "white") ? whiteCards : blackCards;
 
         foreach (var slot in slots)
         {
             if (string.IsNullOrEmpty(slot.cardName))
             {
                 slot.cardObject.SetActive(true);
-
                 slot.cardName = drawnCard;
-
-                slot.button.interactable = true;
-
                 slot.cardObject.GetComponentInChildren<TextMeshProUGUI>().text = drawnCard;
-
                 break;
             }
         }
+
+        UpdateCardInteractivity();
     }
+
+
 
     void OnCardClicked(CardSlot slot)
     {
-        if (slot.isActive || string.IsNullOrEmpty(slot.cardName)) return;
+        if (string.IsNullOrEmpty(slot.cardName)) return;
 
-        slot.isActive = true;
-        SetCardSlotState(slot, true);
         ApplyCardEffect(slot.cardName);
-        slot.cardName = ""; // Clear used card
+
+        slot.cardName = "";
+        slot.cardObject.SetActive(false);
     }
+
 
 
 
